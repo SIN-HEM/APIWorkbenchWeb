@@ -19,7 +19,7 @@ Graphite canvas, blue brand accents, editorial typography, restrained technical 
 Buildless HTML, CSS, and JavaScript. No analytics, login, forms, or tracking. Installer chunks below the hosting asset-size limit are fetched and SHA256-verified in the browser before an installer is offered. This avoids inventing external download URLs. Capture demo screenshots in an isolated local store, never the owner's saved workspaces or credentials. Save source and deployment configuration in the requested desktop folder.
 
 ## Validation
-Check content and links, installer hashes, normal and cancelled download flows, support-link safety, responsive rendering, keyboard navigation, screenshot assets, and the hosted deployment. Retain an owner-private hosted preview unless public access is requested.
+Check content and links, installer hashes, normal and cancelled download flows, support-link safety, responsive rendering, keyboard navigation, and screenshot assets. The owner selected local-only delivery on November 1, 2026. Hosting is out of scope unless newly authorized.
 
 ## Creator support
 The owner supplied https://buymeacoffee.com/hsrhemant0e. It appears only in the optional follow-up after the verified installer download starts.

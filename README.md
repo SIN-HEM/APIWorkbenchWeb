@@ -1,6 +1,6 @@
 # API Workbench website
 
-A responsive, buildless product and download website for the Windows API Workbench beta.
+A responsive, buildless product and download website for the Windows API Workbench beta. The owner requested local-only delivery on November 1, 2026. Do not publish or upload this folder without new authorization.
 
 ## Run locally
 
@@ -13,6 +13,8 @@ npm run dev
 Open the printed local URL. No dependency installation is required. Run `npm run check`
 to verify screenshots, page links, installer reconstruction and SHA256, support-link
 validation, cancellation, error handling, and absence of private data.
+
+On Windows, double-click `Start Website.cmd`, then open http://127.0.0.1:4173/ in your browser. Keep the terminal open while using the website; press Ctrl+C to stop it. Opening `dist/index.html` directly does not support the download flow.
 
 ## Contents
 
@@ -39,8 +41,10 @@ therefore says the installer is ready, with a manual save-again link when needed
 2. Update `site-settings.json` and relevant release copy in `dist/index.html`.
 3. Run `node scripts/prepare-downloads.mjs INSTALLER_DIRECTORY BRAND_ASSET_DIRECTORY`.
 4. Replace screenshots only with current, non-private captures of the real app.
-5. Run `npm run check`, preview, then publish through the existing Sites project.
+5. Run `npm run check` and preview locally. Publication requires new owner authorization.
 
-The site is initially owner-private. A public download site requires changing its
-audience to public. This folder includes actual Windows beta installers as
-verified chunks; no local workspace databases or credentials are included.
+The retained Sites manifest records an earlier hosting preparation attempt; it does not mean this website is published. This delivery is local only. This folder includes actual Windows beta installers as verified chunks; no local workspace databases or credentials are included.
+
+## Verification
+
+All six automated checks passed. Desktop and 390px mobile previews were checked, and an actual browser download matched the original desktop installer SHA256. The optional support dialog used the owner's real Buy Me a Coffee URL. The last browser refresh after a whitespace-only mobile copy correction could not run because automatic browser approval review reached its usage limit. Screenshots of the earlier verified previews are in `preview-qa/`.
