@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-11-01T05:39:54.114Z",
+  "version": "0.1.0-beta.3",
+  "passed": true,
+  "checks": [
+    "All page anchors and product assets exist.",
+    "Real support link configured; unsafe support destinations rejected.",
+    "desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "Initial/mid-transfer cancellation, network errors, truncation, and tampering handled.",
+    "Deployment contains no local databases, account tokens, or private key files."
+  ]
+}
