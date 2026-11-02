@@ -12,12 +12,19 @@ function pass(message){checks.push(message);console.log(`PASS ${message}`);}
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){
   const target=match[1];if(target.startsWith('#')){if(target.length>1)assert(html.includes(`id="${target.slice(1)}"`),`Missing anchor ${target}`);continue;}
   if(/^https?:/.test(target))continue;
+  if(target.startsWith('mailto:')){assert.equal(new URL(target).pathname,'support@apiworkbench.in');continue;}
   assert(fs.existsSync(path.join(root,target)),`Missing local asset ${target}`);
 }
-for(const image of ['workbench-request.png','workbench-tests.png','getting-started.png']){
+for(const image of ['workbench-request.png','workbench-tests.png','getting-started.png',...['graphite','daylight','ocean','midnight','warm-paper'].map(name=>'appearance-'+name+'.png')]){
   const bytes=fs.readFileSync(path.join(root,'assets',image));assert(bytes.length>10000,`Screenshot too small: ${image}`);assert(bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),`Invalid PNG ${image}`);
 }
 pass('All page anchors and product assets exist.');
+const appearanceHashes=['graphite','daylight','ocean','midnight','warm-paper'].map(name=>createHash('sha256').update(fs.readFileSync(path.join(root,'assets','appearance-'+name+'.png'))).digest('hex'));
+assert.equal(new Set(appearanceHashes).size,5,'Appearance previews must be distinct app captures.');
+assert(html.includes('mailto:support@apiworkbench.in'));
+assert(html.includes('https://github.com/SIN-HEM/ApiCollabPlatform/issues'));
+assert(html.includes('currently private'),'Repository access restriction must be clear.');
+pass('Five distinct real appearance previews and the requested support/repository links are present.');
 assert.equal(validateCoffeeUrl(release.coffeeUrl),'https://buymeacoffee.com/hsrhemant0e');
 for(const unsafe of ['javascript:alert(1)','https://buymeacoffee.com.evil.test/user','https://evil.test/user','https://user:pass@buymeacoffee.com/person','https://buymeacoffee.com/'])assert.equal(validateCoffeeUrl(unsafe),null);
 pass('Real support link configured; unsafe support destinations rejected.');
@@ -26,14 +33,15 @@ const fetchFromDisk=async url=>{
   const file=path.resolve(root,pathname);assert(file.startsWith(root+path.sep));
   return new Response(fs.readFileSync(file),{status:200});
 };
-for(const [key,edition] of Object.entries(release.editions)){
+assert.deepEqual(Object.keys(release.platforms).sort(),['linux-arm64','linux-x64','osx-arm64','osx-x64','win-x64']);
+for(const [platformId,platform] of Object.entries(release.platforms))for(const [key,edition] of Object.entries(platform.editions)){
   assert.equal(edition.chunks.reduce((sum,chunk)=>sum+chunk.bytes,0),edition.bytes);
   for(const chunk of edition.chunks)assert(chunk.bytes<=16*1024*1024,'Asset exceeds 16 MiB deployment chunk size.');
   let progress=0;
   const blob=await fetchInstaller(edition,{baseUrl:'https://site.test/',fetcher:fetchFromDisk,onProgress:(bytes,total)=>{assert(bytes>=progress&&bytes<=total);progress=bytes;}});
   assert.equal(blob.size,edition.bytes);assert.equal(progress,edition.bytes);
   assert.equal(createHash('sha256').update(Buffer.from(await blob.arrayBuffer())).digest('hex'),edition.sha256);
-  pass(`${key}: complete installer reassembled with exact size, progress, and SHA256.`);
+  pass(`${platformId}/${key}: complete installer reassembled with exact size, progress, and SHA256.`);
 }
 const dummyBytes=Buffer.from('small test installer');
 const dummy={filename:'test.exe',bytes:dummyBytes.length,sha256:createHash('sha256').update(dummyBytes).digest('hex'),chunks:[{url:'test.bin',bytes:dummyBytes.length}]};

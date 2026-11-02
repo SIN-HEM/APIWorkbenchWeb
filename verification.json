@@ -1,12 +1,21 @@
 {
-  "checkedAtUtc": "2026-11-01T09:11:21.641Z",
+  "checkedAtUtc": "2026-11-02T13:06:59.868Z",
   "version": "0.1.0-beta.3",
   "passed": true,
   "checks": [
     "All page anchors and product assets exist.",
+    "Five distinct real appearance previews and the requested support/repository links are present.",
     "Real support link configured; unsafe support destinations rejected.",
-    "desktop: complete installer reassembled with exact size, progress, and SHA256.",
-    "cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "win-x64/desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "win-x64/cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "osx-arm64/desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "osx-arm64/cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "osx-x64/desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "osx-x64/cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "linux-x64/desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "linux-x64/cli: complete installer reassembled with exact size, progress, and SHA256.",
+    "linux-arm64/desktop: complete installer reassembled with exact size, progress, and SHA256.",
+    "linux-arm64/cli: complete installer reassembled with exact size, progress, and SHA256.",
     "Initial/mid-transfer cancellation, network errors, truncation, and tampering handled.",
     "Deployment contains no local databases, account tokens, or private key files."
   ]

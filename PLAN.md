@@ -23,3 +23,7 @@ Check content and links, installer hashes, normal and cancelled download flows, 
 
 ## Creator support
 The owner supplied https://buymeacoffee.com/hsrhemant0e. It appears only in the optional follow-up after the verified installer download starts.
+
+## November 2 refresh
+
+Emphasize that Free Local is always free and saves repeated setup through requests, environments and collection runs. Describe six feature groups with practical examples, plus the optional CLI workflow. Avoid unmeasured performance comparisons. Preview all five real appearance themes with keyboard-accessible tabs and an enlarged image viewer. Add the checksum-verified native macOS and Linux installers alongside Windows, with an explicit OS/architecture selector and accurate version/installation notes. Make support@apiworkbench.in the public question/contact route; link the actual private GitHub repository and issues with a clear access note. Keep the site local and the page layout focused, responsive and accessible.
